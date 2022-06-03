@@ -1,0 +1,142 @@
+@import "reset";
+@import "config";
+@import "media";
+@import url($font-link);
+
+@mixin border($color: white, $radius: 1rem, $width: 3px) {
+  border-radius: $radius;
+  border-color: $color;
+  border-style: solid;
+  border-width: $width;
+}
+
+@mixin flex-container(
+  $direction: row,
+  $justify: flex-start,
+  $align: flex-start
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/* Work there */
+body {
+  background-color: $primary-pale-blue;
+  background-image: url("../../images/pattern-background-desktop.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-x: center;
+  font: $font-weight $font-size $font-stack;
+
+  @media screen and (max-width: 375px) {
+    background-image: url("../../images/pattern-background-mobile.svg");
+  }
+
+  .card-container {
+    min-width: 21rem;
+    min-height: 37rem;
+
+    height: 33rem;
+
+    font-size: 1rem;
+
+    @media screen and (min-width: 1200px) {
+      width: 26rem;
+    }
+    @media screen and (max-width: 1199px) {
+      width: 23rem;
+    }
+    @media screen and (max-width: 767px) {
+      width: 21rem;
+    }
+
+    @include flex-container(column, center, center);
+
+    .card {
+      width: 100%;
+      height: 100%;
+
+      background-color: white;
+      box-shadow: 5px 20px 20px 0px #0000001f;
+
+      @include flex-container(column, space-between, center);
+      @include border($neutral-very-pale-blue, 1rem, 0px);
+
+      .hero-img {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+
+        width: 100%;
+      }
+
+      .content-container {
+        height: 100%;
+        width: 100%;
+
+        padding: 1.9rem;
+        color: $neutral-desaturated-blue;
+        @include flex-container(column, space-between, center);
+
+        .title {
+          font-weight: $font-weight-black;
+          font-size: 1.5rem;
+          color: $neutral-dark-blue;
+          text-transform: capitalize;
+        }
+        .description {
+          text-align: center;
+          line-height: 1.5rem;
+        }
+        .subscription-container {
+          width: 100%;
+          background-color: $neutral-very-pale-blue;
+
+          padding: 1rem;
+          @include flex-container(row, space-between, center);
+          @include border($neutral-very-pale-blue);
+
+          .description-container {
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            .description-title {
+              text-transform: capitalize;
+              font-weight: $font-weight-bold;
+              color: $neutral-dark-blue;
+            }
+          }
+          .change-link {
+            text-decoration: underline;
+            font-weight: $font-weight-bold;
+            color: $primary-bright-blue;
+          }
+        }
+        .proceed-btn {
+          width: 100%;
+
+          padding: 1rem;
+
+          text-align: center;
+
+          color: $primary-pale-blue;
+          background-color: $primary-bright-blue;
+          @include border($primary-bright-blue);
+
+          box-shadow: 0px 14px 17px 3px #0000001f;
+        }
+        .proceed-btn:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+        .cancel-btn {
+          border: none;
+          color: $neutral-desaturated-blue;
+
+          font-weight: $font-weight-black;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
